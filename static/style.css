@@ -1,0 +1,6 @@
+#messages {
+    height: 89.5vh;
+    overflow-y: scroll; 
+    display: flex; 
+    flex-direction: column-reverse;
+}
