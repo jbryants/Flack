@@ -24,10 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // event listener for send button click
         document.querySelector('#msgToSendBtn').onclick = () => {
             
+            let messageElem = document.querySelector('#msgToSend');
+
             const channelName = localStorage.getItem('channelName');
             const time = formatAMPM(new Date);
-            const message = document.querySelector('#msgToSend').value;
+            const message = messageElem.value;
             
+            // reset the value of input textbox to empty
+            messageElem.value = "";
+
+            // send the message across
             socket.emit('append message',
                 {'c_name': channelName, 'name': name, 'time': time, 'message': message});
         };
@@ -39,10 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Cancel the default action, if needed
                 event.preventDefault();
 
+                let messageElem = document.querySelector('#msgToSend');
+
                 const channelName = localStorage.getItem('channelName');
                 const time = formatAMPM(new Date);
-                const message = document.querySelector('#msgToSend').value;
-            
+                const message = messageElem.value;
+
+                // reset the value of input textbox to empty
+                messageElem.value = "";
+
                 socket.emit('append message',
                     {'c_name': channelName, 'name': name, 'time': time, 'message': message});
             }
